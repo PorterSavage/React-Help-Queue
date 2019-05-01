@@ -1,11 +1,14 @@
-import React from "react";
+/* eslint-disable linebreak-style */
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Header(){
+function Header() {
   return (
     <div>
       <h1>Help Queue!</h1>
-      <Link to="/">Home</Link> | <Link to="/newticket">Create Ticket</Link>
+      <Link to="/">Home</Link>
+      {' | '}
+      <Link to="/newticket">Create Ticket</Link>
     </div>
   );
 }

@@ -1,30 +1,33 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
+import PropTypes from 'prop-types';
 import ConfirmationQuestions from './ConfirmationQuestions';
 import NewTicketForm from './NewTicketForm';
-import PropTypes from 'prop-types';
 
 class NewTicketControl extends React.Component {
-  
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false
+      formVisibleOnPage: false,
     };
     this.handleTroubleshootingConfirmation = this.handleTroubleshootingConfirmation.bind(this);
   }
 
-  handleTroubleshootingConfirmation(){
-    this.setState({formVisibleOnPage: true});
+  handleTroubleshootingConfirmation() {
+    this.setState({ formVisibleOnPage: true });
   }
 
-  render(){
+  render() {
+    const { onNewTicketCreation } = this.props;
+    const { formVisibleOnPage } = this.state;
     let currentlyVisibleContent = null;
-    if (this.state.formVisibleOnPage){
-      currentlyVisibleContent = <NewTicketForm onNewTicketCreation={this.props.onNewTicketCreation}/>;
+    if (formVisibleOnPage) {
+      currentlyVisibleContent = <NewTicketForm onNewTicketCreation={onNewTicketCreation} />;
     } else {
-      currentlyVisibleContent = <ConfirmationQuestions onTroubleshootingConfirmation={this.handleTroubleshootingConfirmation}/>;
+      // eslint-disable-next-line max-len
+      currentlyVisibleContent = <ConfirmationQuestions onTroubleshootingConfirmation={this.handleTroubleshootingConfirmation} />;
     }
-    return ( 
+    return (
       <div>
         {currentlyVisibleContent}
       </div>
@@ -33,7 +36,7 @@ class NewTicketControl extends React.Component {
 }
 
 NewTicketControl.propTypes = {
-  onNewTicketCreation: PropTypes.func
+  onNewTicketCreation: PropTypes.func.isRequired,
 };
 
 export default NewTicketControl;
